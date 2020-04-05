@@ -19,6 +19,7 @@ public class Utilities : MonoBehaviour {
 
         public const string INFO_BACK = "InfoBack";
         public const string QUIT = "Quit";
+        public const string QuitView = "QuitView";
     
     }
 
@@ -31,6 +32,7 @@ public class Utilities : MonoBehaviour {
         public const string ScaleUp = "ScaleUp";
         public const string ScaleDown = "ScaleDown";
         public const string TimelineInfo = "TimelineInfo(Clone)";
+        public const string LocationalInfo = "LocationalItem(Clone)";
 
     }
     [Serializable]
@@ -47,6 +49,7 @@ public class Utilities : MonoBehaviour {
         public int Year;
         public int month;
         public string title;
+        public int locationID;
         
     }
 

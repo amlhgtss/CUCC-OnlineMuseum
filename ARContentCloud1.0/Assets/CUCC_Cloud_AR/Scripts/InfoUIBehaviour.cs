@@ -13,7 +13,10 @@ public class InfoUIBehaviour : UIBehaviour {
         base.RegisterEvents();
 
     }
-
+    private void OnDestroy()
+    {
+        base.RemoveEvents();
+    }
     // Update is called once per frame
     void Update() {
 

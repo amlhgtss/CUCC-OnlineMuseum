@@ -8,7 +8,10 @@ public class DemoUIBehaviour : UIBehaviour {
 	void Start () {
         base.RegisterEvents();
 	}
-
+    private void OnDestroy()
+    {
+        base.RemoveEvents();
+    }
     public InfoUIBehaviour InfoUI;
 	
 	// Update is called once per frame

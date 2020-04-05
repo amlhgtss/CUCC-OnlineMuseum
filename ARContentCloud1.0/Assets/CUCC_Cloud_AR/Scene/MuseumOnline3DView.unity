@@ -598,6 +598,10 @@ Prefab:
       propertyPath: m_AutoStart
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1726144106861650, guid: 8e359dd1c83f9c649a629034069f32cb, type: 2}
+      propertyPath: m_Name
+      value: QuitView
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e359dd1c83f9c649a629034069f32cb, type: 2}
   m_IsPrefabParent: 0

@@ -89,3 +89,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CUCC_Cloud_AR/Scene/MuseumOnline3DView.unity
     guid: a2f0829c3725be541b03bb13d51cdbfb
+  - enabled: 1
+    path: Assets/CUCC_Cloud_AR/Scene/MuseumOnlineTimeLineView.unity
+    guid: 9ee3fa88f091c7a4f9b665cf8ca1ad18
+  - enabled: 1
+    path: Assets/CUCC_Cloud_AR/Scene/MuseumOnlineLocationalView.unity
+    guid: 20a8c9510ddbb954b8184fa5f0a2dcab

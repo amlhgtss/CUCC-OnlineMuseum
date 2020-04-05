@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class OnlineMuseumUI : UIBehaviour {
     public static OnlineMuseumUI mInstance;
     public Transform[] AvailableSlots;
@@ -19,9 +20,12 @@ public class OnlineMuseumUI : UIBehaviour {
 	void Start () {
         base.RegisterEvents();
     }
-	
-	// Update is called once per frame
-	void Update () {
+    private void OnDestroy()
+    {
+        base.RemoveEvents();
+    }
+    // Update is called once per frame
+    void Update () {
         OnlineMuseumUI.mInstance = this;
 
     }
@@ -87,7 +91,9 @@ public class OnlineMuseumUI : UIBehaviour {
             case Utilities.ButtonNames.INFO_BACK:
                 showInfo("", false);
                 break;
-
+            case Utilities.ButtonNames.QuitView:
+                SceneManager.LoadSceneAsync(0);
+                break;
         }
     }
 }

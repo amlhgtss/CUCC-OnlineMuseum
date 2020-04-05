@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TimelineUIBehaviour : UIBehaviour {
@@ -27,9 +28,12 @@ public class TimelineUIBehaviour : UIBehaviour {
         base.RegisterEvents();
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+    private void OnDestroy()
+    {
+        base.RemoveEvents();
+    }
+    // Update is called once per frame
+    void Update () {
        
 	}
 
@@ -62,6 +66,9 @@ public class TimelineUIBehaviour : UIBehaviour {
                 InfoPanel.SetActive(false);
                 MainObj.SetActive(false);
                 Destroy(TempModel);
+                break;
+            case Utilities.ButtonNames.QuitView:
+                SceneManager.LoadSceneAsync(0);
                 break;
 
         }

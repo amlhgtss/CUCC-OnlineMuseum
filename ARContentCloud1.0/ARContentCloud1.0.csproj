@@ -392,6 +392,8 @@
     <Compile Include="Assets\EasyAR\Scripts\VideoRecorder.cs" />
     <Compile Include="Assets\EasyAR\Scripts\VIOCameraDeviceUnion.cs" />
     <Compile Include="Assets\EasyAR\Scripts\WorldRootController.cs" />
+    <Compile Include="Assets\LocationalMemberBehaviour.cs" />
+    <Compile Include="Assets\LocationalUIBehaviour.cs" />
     <Compile Include="Assets\Samples\Assets\AllSamplesLauncher\Scripts\MainScene.cs" />
     <Compile Include="Assets\Samples\Assets\AllSamplesLauncher\Scripts\SceneRecorder.cs" />
     <Compile Include="Assets\Samples\Assets\Common\Scripts\TouchController.cs" />

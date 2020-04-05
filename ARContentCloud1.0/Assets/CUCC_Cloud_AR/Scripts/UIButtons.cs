@@ -29,8 +29,12 @@ using UnityEngine.UI;
         {
             base.RegisterEvents();
         }
-        //点击代理
-        public override void onPointerClick(GameObject go)
+    private void OnDestroy()
+    {
+        base.RemoveEvents();
+    }
+    //点击代理
+    public override void onPointerClick(GameObject go)
         {
             base.onPointerClick(go);
             Debug.Log("user clicked gameobject " + go);

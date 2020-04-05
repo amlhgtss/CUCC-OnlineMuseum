@@ -8,7 +8,10 @@ public class SplashUI : UIBehaviour {
     void Start() {
         base.RegisterEvents();
     }
-
+    private void OnDestroy()
+    {
+        base.RemoveEvents();
+    }
     // Update is called once per frame
     void Update() {
 
@@ -19,14 +22,17 @@ public class SplashUI : UIBehaviour {
         switch (go.name)
         {
             case Utilities.ButtonNames.QUIT:
+                Debug.Log("Quit app");
                 Application.Quit();
                 break;
             case Utilities.ButtonNames_onlineMuseum.VisualView:
-                SceneManager.LoadSceneAsync("MuseumOnline3DView");
+                SceneManager.LoadScene("MuseumOnline3DView");
                 break;
             case Utilities.ButtonNames_onlineMuseum.TimeLineView:
+                SceneManager.LoadScene("MuseumOnlineTimeLineView");
                 break;
             case Utilities.ButtonNames_onlineMuseum.LocationalView:
+                SceneManager.LoadScene("MuseumOnlineLocationalView");
                 break;
         }
     }
