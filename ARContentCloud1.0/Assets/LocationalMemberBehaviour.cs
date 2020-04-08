@@ -23,7 +23,7 @@ public class LocationalMemberBehaviour : MonoBehaviour {
         {
             Destroy(MainObj.transform.GetChild(0).gameObject);
             GameObject temp = Instantiate(mInfo.TempModel, MainObj.transform);
-            temp.transform.localScale = new Vector3(200, 200, 200);
+            temp.transform.localScale = 2000 * temp.transform.localScale;
 
         }
     }

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class LocationalUIBehaviour : UIBehaviour {
 
+    public static LocationalUIBehaviour mInstance;
+
     public Utilities.ItemInfo[] Items;
     public GameObject[] Locations;
     public GameObject LocationItemPrefab;
@@ -26,6 +28,7 @@ public class LocationalUIBehaviour : UIBehaviour {
     // Use this for initialization
     void Start () {
         base.RegisterEvents();
+        mInstance = this;
         initItem();
     }
 
@@ -74,16 +77,18 @@ public class LocationalUIBehaviour : UIBehaviour {
                 InfoPanel.SetActive(true);
                 MainObj.SetActive(true);
                 Utilities.ItemInfo temp = go.GetComponent<LocationalMemberBehaviour>().mInfo;
+                Debug.Log(temp.TextInfo);
                 InfoText.text = temp.TextInfo;
                 InfoImage.sprite = Sprite.Create(temp.TempTexture, new Rect(0f, 0f, temp.TempTexture.width, temp.TempTexture.height), InfoImage.sprite.pivot);
+                
                 if (temp.VideoUrl != "")
                     Player.OpenVideoFromFile(MediaPlayer.FileLocation.RelativeToStreamingAssetsFolder, temp.VideoUrl, true);
 
                 if (temp.TempModel)
-                {
-                    TempModel = Instantiate(temp.TempModel, Vector3.zero, temp.TempModel.transform.rotation, MainObj.transform);
-                    TempModel.transform.localPosition = Vector3.zero;
-                    TempModel.transform.localRotation = temp.TempModel.transform.rotation;
+                {  // 因为景区无法提供模型临时去掉
+                    //TempModel = Instantiate(temp.TempModel, Vector3.zero, temp.TempModel.transform.rotation, MainObj.transform);
+                    //TempModel.transform.localPosition = Vector3.zero;
+                    //TempModel.transform.localRotation = temp.TempModel.transform.rotation;
                 }
 
                 break;

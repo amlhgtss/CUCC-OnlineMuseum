@@ -74,8 +74,11 @@ public class Click : MonoBehaviour
      */
     private void OnClick()
     {
-        //Debug.Log(gameObject.name + "单击事件被触发");
-       
+        Debug.Log(gameObject.name + "单击事件被触发");
+        if (LocationalUIBehaviour.mInstance)
+        {
+            LocationalUIBehaviour.mInstance.onButtonClick(transform.parent.gameObject);
+        }
     }
 
     /**
@@ -84,7 +87,10 @@ public class Click : MonoBehaviour
     private void OnDblclick()
     {
         //Debug.Log(gameObject.name + "双击事件被触发");
+        if(OnlineMuseumUI.mInstance)
         OnlineMuseumUI.mInstance.on3DModelClick(gameObject);
+
+      
        
     }
 }
