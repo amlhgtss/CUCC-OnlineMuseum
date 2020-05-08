@@ -48,6 +48,7 @@ public class Utilities : MonoBehaviour {
 
         public int Year;
         public int month;
+        public int day;
         public string title;
         public int locationID;
         

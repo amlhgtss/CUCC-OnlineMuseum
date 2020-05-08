@@ -24,8 +24,11 @@ public class TimelineItem : MonoBehaviour {
     }
     public void updatePosition(Transform parent)
     {
+        Debug.Log("update position");
+        
         transform.SetParent(parent);
-        GetComponent<RectTransform>().anchoredPosition = new Vector2(0, GetComponent<RectTransform>().anchoredPosition.y);
+        int index = transform.GetSiblingIndex();
+        GetComponent<RectTransform>().anchoredPosition = new Vector2(0+10* index, GetComponent<RectTransform>().anchoredPosition.y);
 
 
     }

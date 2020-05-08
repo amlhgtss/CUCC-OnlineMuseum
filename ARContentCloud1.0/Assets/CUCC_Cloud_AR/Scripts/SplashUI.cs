@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SplashUI : UIBehaviour {
 
+    public string[] SceneNames;
+
     // Use this for initialization
     void Start() {
         base.RegisterEvents();
@@ -26,13 +28,16 @@ public class SplashUI : UIBehaviour {
                 Application.Quit();
                 break;
             case Utilities.ButtonNames_onlineMuseum.VisualView:
-                SceneManager.LoadScene("MuseumOnline3DView");
+               // SceneManager.LoadScene("MuseumOnline3DView");
+                SceneManager.LoadScene(SceneNames[0]);
                 break;
             case Utilities.ButtonNames_onlineMuseum.TimeLineView:
-                SceneManager.LoadScene("MuseumOnlineTimeLineView");
+                //SceneManager.LoadScene("MuseumOnlineTimeLineView");
+                SceneManager.LoadScene(SceneNames[1]);
                 break;
             case Utilities.ButtonNames_onlineMuseum.LocationalView:
-                SceneManager.LoadScene("MuseumOnlineLocationalView");
+                //SceneManager.LoadScene("MuseumOnlineLocationalView");
+                SceneManager.LoadScene(SceneNames[2]);
                 break;
         }
     }

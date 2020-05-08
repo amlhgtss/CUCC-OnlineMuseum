@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222549296600405352}
   - component: {fileID: 114935023767450934}
   - component: {fileID: 114474272123955850}
+  - component: {fileID: 114742039578572402}
   m_Layer: 5
   m_Name: MonthPrefab
   m_TagString: Untagged
@@ -91,12 +92,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mType: 2
-  MemberPrefab: {fileID: 0}
+  MemberPrefab: {fileID: 1390756586999972, guid: 4c4133fa5b94ae14292ca28ad66b6863,
+    type: 2}
   ScaleReferance: {fileID: 0}
   Initialized: 0
   StartYear: 0
   CurrentYear: 0
   CurrentMonth: 0
+  CurrentDay: 0
+--- !u!114 &114742039578572402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1390756586999972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
 --- !u!114 &114935023767450934
 MonoBehaviour:
   m_ObjectHideFlags: 1

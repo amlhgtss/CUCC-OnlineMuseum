@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public enum MemberType
 {
 Year,
@@ -20,9 +20,12 @@ public class TimeLineMemberBehaviour : MonoBehaviour {
     public int StartYear;
     public int CurrentYear;
     public int CurrentMonth;
+    public int CurrentDay;
     private GameObject temp;
     private float scaleFactor = 3000f;
     private float resetFactor = 2100f;
+
+   
 	// Use this for initialization
 	void Start () {
         switch (mType)
@@ -37,8 +40,16 @@ public class TimeLineMemberBehaviour : MonoBehaviour {
                 resetFactor = 10000f;
                 scaleFactor = 20000f;
                 break;
+            case MemberType.day:
+                resetFactor = 10000f;
+                scaleFactor = 30000f;
+                if (!SceneManager.GetActiveScene().name.Contains("DaDuQiao"))
+                {
+                    MemberPrefab = null;
+                }
+                break;
         }
-
+       
     }
 	
 	// Update is called once per frame
@@ -75,8 +86,44 @@ public class TimeLineMemberBehaviour : MonoBehaviour {
 
     }
 
+    private int getDay(int mon, int year)
+    {
+        int days =30;
+        switch (mon)
+        {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                days = 31;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                days = 30;
+                break;
+            case 2:
+                if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+                {
+                    days = 29;
+                }
+                else
+                {
+                    days = 28;
+                }
+                break;
+        }
+        return days;
+    }
+
     private void init()
     {
+        if (!MemberPrefab)
+            return;
         switch (mType)
         {
             case MemberType.Year:
@@ -137,8 +184,9 @@ public class TimeLineMemberBehaviour : MonoBehaviour {
                         if (MemberPrefab)
                         {
                             temp = Instantiate(MemberPrefab, transform);
-                            temp.GetComponentInChildren<Text>().text = (i+1).ToString();
+                            temp.GetComponentInChildren<Text>().text = CurrentYear+"/"+ (i+1).ToString();
                             temp.GetComponent<TimeLineMemberBehaviour>().CurrentMonth = i + 1;
+                            temp.GetComponent<TimeLineMemberBehaviour>().CurrentYear = CurrentYear;
                             temp.GetComponent<TimeLineMemberBehaviour>().ScaleReferance = ScaleReferance;
                             TimelineUIBehaviour.mInstance.updateItemPositionByMonth(CurrentYear,i + 1, temp.transform.GetChild(0));
                         }
@@ -148,6 +196,43 @@ public class TimeLineMemberBehaviour : MonoBehaviour {
                 }
                 break;
             case MemberType.day:
+               
+                if (transform.childCount > 2)
+                {
+                    foreach (Transform child in transform)
+                    {
+                        child.gameObject.SetActive(true);
+                        if (child.GetComponent<TimeLineMemberBehaviour>())
+                            TimelineUIBehaviour.mInstance.updateItemPositionByDay(CurrentYear, child.GetComponent<TimeLineMemberBehaviour>().CurrentDay,CurrentMonth, child);
+                    }
+
+                    transform.GetChild(0).gameObject.SetActive(false);
+
+
+                    Initialized = true;
+                }
+                else
+                {
+                    transform.GetChild(0).gameObject.SetActive(false);
+
+                    int index = getDay(CurrentMonth,CurrentYear);
+
+                    for (int i = 0; i < index; i++)
+                    {
+                        if (MemberPrefab)
+                        {
+                            temp = Instantiate(MemberPrefab, transform);
+                            temp.GetComponentInChildren<Text>().text =  CurrentMonth + "/" + (i + 1).ToString();
+                            temp.GetComponent<TimeLineMemberBehaviour>().CurrentDay = i + 1;
+                            temp.GetComponent<TimeLineMemberBehaviour>().CurrentMonth = CurrentMonth;
+                            temp.GetComponent<TimeLineMemberBehaviour>().CurrentYear = CurrentYear;
+                            temp.GetComponent<TimeLineMemberBehaviour>().ScaleReferance = ScaleReferance;
+                            TimelineUIBehaviour.mInstance.updateItemPositionByDay(CurrentYear, i + 1,CurrentMonth, temp.transform.GetChild(0));
+                        }
+                    }
+
+                    Initialized = true;
+                }
                 break;
             case MemberType.hours:
                 break;

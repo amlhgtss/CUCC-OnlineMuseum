@@ -50,16 +50,16 @@ public class TimelineUIBehaviour : UIBehaviour {
             case Utilities.ButtonNames_onlineMuseum.TimelineInfo:
                 Timeline.SetActive(false);
                 InfoPanel.SetActive(true);
-                MainObj.SetActive(true);
+                ////MainObj.SetActive(true);
                 Utilities.ItemInfo temp = go.GetComponent<TimelineItem>().mInfo;
                 InfoText.text = temp.TextInfo;
                 InfoImage.sprite = Sprite.Create(temp.TempTexture, new Rect(0f, 0f, temp.TempTexture.width, temp.TempTexture.height), InfoImage.sprite.pivot);
-                if(temp.VideoUrl!="")
-                    Player.OpenVideoFromFile(MediaPlayer.FileLocation.RelativeToStreamingAssetsFolder, temp.VideoUrl, true);
+                ////if(temp.VideoUrl!="")
+                ////    Player.OpenVideoFromFile(MediaPlayer.FileLocation.RelativeToStreamingAssetsFolder, temp.VideoUrl, true);
 
-                TempModel = Instantiate(temp.TempModel, Vector3.zero, temp.TempModel.transform.rotation, MainObj.transform);
-                TempModel.transform.localPosition = Vector3.zero;
-                TempModel.transform.localRotation = temp.TempModel.transform.rotation;
+                ////TempModel = Instantiate(temp.TempModel, Vector3.zero, temp.TempModel.transform.rotation, MainObj.transform);
+                ////TempModel.transform.localPosition = Vector3.zero;
+                ////TempModel.transform.localRotation = temp.TempModel.transform.rotation;
                 break;
             case Utilities.ButtonNames.INFO_BACK:
                 Timeline.SetActive(true);
@@ -126,6 +126,17 @@ public class TimelineUIBehaviour : UIBehaviour {
         }
     }
 
+    public void updateItemPositionByDay(int year , int day, int month, Transform target)
+    {
+        foreach (TimelineItem item in TimelineItems)
+        {
+            if (month == item.mInfo.month && day == item.mInfo.day && year == item.mInfo.Year)
+            {
+                item.updatePosition(target.transform);
+            }
+        }
+    }
+
     private void onScale(bool up)
     {
         //ScaleRefferance.sizeDelta = new Vector2(2000 * (1 + bar.value * 10), ScaleRefferance.rect.height);
@@ -133,8 +144,13 @@ public class TimelineUIBehaviour : UIBehaviour {
         //foreach (TimelineItem t in TimelineItems)
         //{
         //    t.undockItem();
-        //}
-
+        //} 
+        if (up && ScaleRefferance.rect.width < 600000)
+        {
+            ScaleRefferance.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ScaleRefferance.rect.width + ScaleFactor);
+            if (ScaleRefferance.rect.width >= 30000)
+                ScaleFactor = 60000;
+        }
         if (up && ScaleRefferance.rect.width < 40000)
         {
             ScaleRefferance.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ScaleRefferance.rect.width + ScaleFactor);

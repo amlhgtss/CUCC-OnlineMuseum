@@ -19,12 +19,13 @@ public class LocationalUIBehaviour : UIBehaviour {
 
     public GameObject InfoPanel;
     public Text InfoText;
+    public Text[] LocationTexts;
     public Image InfoImage;
     public MediaPlayer Player;
     public GameObject TempModel;
     public GameObject MainObj;
     public Transform QuitView;
-
+ 
     // Use this for initialization
     void Start () {
         base.RegisterEvents();
@@ -41,12 +42,15 @@ public class LocationalUIBehaviour : UIBehaviour {
     {
         for (int i = 0; i < Items.Length; i++)
         {
-            Debug.Log(Items[i].Year);
+            Debug.Log(Items[i].Year+ "@"+ (Items[i].Year - Items[i].Year % 10).ToString());
             int index = findYear(Items[i].Year - Items[i].Year % 10);
             Debug.Log(index);
             GameObject temp = Instantiate(LocationItemPrefab, Locations[Items[i].locationID].transform.GetChild(index));
-            temp.GetComponent<LocationalMemberBehaviour>().mInfo = Items[i];
+            temp.GetComponent<LocationalMemberBehaviour>().mInfo = Items[i];           
             temp.GetComponent<LocationalMemberBehaviour>().Init();
+            int child = temp.transform.GetSiblingIndex();
+            Debug.Log(child);
+            temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().anchoredPosition.x,0 + 120 * child);
         }
     }
 
@@ -55,7 +59,7 @@ public class LocationalUIBehaviour : UIBehaviour {
         for (int i = 0; i < MemberCap; i ++)
         {
             if (StartYear + i * YearRange == year)
-                return MemberCap - i;
+                return MemberCap-1 - i;
         }
         return -1;
     }

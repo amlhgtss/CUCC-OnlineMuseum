@@ -9,6 +9,8 @@
 using Common;
 using easyar;
 using System;
+using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,9 +22,9 @@ namespace SurfaceTracking
         public Text Status;
         public ARSession Session;
         public TouchController TouchControl;
-
+        public UnityEngine.UI.Image ScreenShot;
         private SurfaceTrackerFrameFilter tracker;
-
+        private bool takeShot = false;
         private void Awake()
         {
             tracker = Session.GetComponentInChildren<SurfaceTrackerFrameFilter>();
@@ -53,6 +55,44 @@ namespace SurfaceTracking
             }
         }
 
+        private IEnumerator screenShot()
+        {
+            yield return new WaitForEndOfFrame();
+            DateTime now = DateTime.Now;
+            string times = now.ToString();
+            times = times.Trim();
+            times = times.Replace("/", "-");
+            string fileName = "ARScreenShot" + times + ".png";
+
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                ScreenShot.gameObject.SetActive(true);
+
+                Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+                texture.ReadPixels(new Rect(0, 0,  Screen.width, Screen.height), 0, 0);
+                texture.Apply();
+                byte[] bytes = texture.EncodeToPNG();
+                
+                ScreenShot.sprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), ScreenShot.rectTransform.pivot);
+                string path = Application.persistentDataPath + "/" + "SaveTextures/";//"/sdcard/Pictures/Screenshots";
+
+
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                string filePath = path + "/" + fileName;
+                File.WriteAllBytes(filePath, bytes);
+
+            }
+        }
+
+
+
+        public void OnScreenShotClick()
+        {
+            StartCoroutine(screenShot());
+        }
         public void SwitchCenterMode()
         {
             while (true)
