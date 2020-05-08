@@ -1,0 +1,7 @@
+{
+"Status":"Ready",
+"OS":1 ,
+"Url_Base":"http://5g.orziii.com/yun/",
+"Url_Get_Code":"sys/randomImage/",
+"Url_Login":"/sys/login"
+}
