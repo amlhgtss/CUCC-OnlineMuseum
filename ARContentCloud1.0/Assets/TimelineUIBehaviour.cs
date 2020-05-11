@@ -137,6 +137,11 @@ public class TimelineUIBehaviour : UIBehaviour {
         }
     }
 
+    public void ToggleItem(GameObject go)
+    {
+        go.SetActive(!go.activeSelf);
+    }
+
     private void onScale(bool up)
     {
         //ScaleRefferance.sizeDelta = new Vector2(2000 * (1 + bar.value * 10), ScaleRefferance.rect.height);

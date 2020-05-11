@@ -32,12 +32,13 @@ public class OnlineMuseumUI : UIBehaviour {
 
     public void on3DModelClick(GameObject go)
     {
-        // Debug.Log(go.name);
+         Debug.Log(go.name);
         showInfo(go.name, true);
     }
 
     private void showInfo(string infoName,bool show)
     {
+        Debug.Log(infoName + "@" + show);
         ControlPannel.SetActive(!show);
         ModelObj.SetActive(show);
         InfoPanel.SetActive(show);

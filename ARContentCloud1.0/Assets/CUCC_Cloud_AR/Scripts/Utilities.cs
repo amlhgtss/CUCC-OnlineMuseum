@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Networking;
+
 
 public class Utilities : MonoBehaviour {
 
@@ -53,6 +55,8 @@ public class Utilities : MonoBehaviour {
         public int locationID;
         
     }
+
+    
 
 }
 

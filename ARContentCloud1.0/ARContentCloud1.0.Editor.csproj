@@ -304,6 +304,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="ARContentCloud1.0.Plugins.csproj">
+      <Project>{66838448-07B7-8821-24C4-FA276FF19730}</Project>
+      <Name>ARContentCloud1.0.Plugins</Name>
+    </ProjectReference>
     <ProjectReference Include="ARContentCloud1.0.csproj">
       <Project>{4278D826-970E-A844-4B80-6C7578B5312A}</Project>
       <Name>ARContentCloud1.0</Name>

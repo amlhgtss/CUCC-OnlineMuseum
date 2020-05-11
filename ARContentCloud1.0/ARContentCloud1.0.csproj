@@ -304,6 +304,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="ARContentCloud1.0.Plugins.csproj">
+      <Project>{66838448-07B7-8821-24C4-FA276FF19730}</Project>
+      <Name>ARContentCloud1.0.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\AVProVideo\Demos\Scripts\AutoRotate.cs" />
     <Compile Include="Assets\AVProVideo\Demos\Scripts\DemoInfo.cs" />
     <Compile Include="Assets\AVProVideo\Demos\Scripts\FrameExtract.cs" />
@@ -456,6 +462,12 @@
     <Compile Include="Assets\TimelineItem.cs" />
     <Compile Include="Assets\TimeLineMemberBehaviour.cs" />
     <Compile Include="Assets\TimelineUIBehaviour.cs" />
+    <Compile Include="Assets\WitBaiduAip\Examples\Asr\AsrDemo.cs" />
+    <Compile Include="Assets\WitBaiduAip\Examples\Tts\TtsDemo.cs" />
+    <Compile Include="Assets\WitBaiduAip\Scripts\Speech\Asr.cs" />
+    <Compile Include="Assets\WitBaiduAip\Scripts\Speech\Base.cs" />
+    <Compile Include="Assets\WitBaiduAip\Scripts\Speech\Tts.cs" />
+    <Compile Include="Assets\WitBaiduAip\Scripts\WavUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ART\Japanese Coin\Environment\HDR_Readme.txt" />

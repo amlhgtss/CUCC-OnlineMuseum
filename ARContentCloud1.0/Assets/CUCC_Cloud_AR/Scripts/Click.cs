@@ -31,7 +31,7 @@ public class Click : MonoBehaviour
 
         if (!Physics.Raycast(_ray, out _hit) || _hit.collider.gameObject != gameObject)
         {
-          
+            Debug.Log(_hit.collider.gameObject.name);
                   return;
         }
           
